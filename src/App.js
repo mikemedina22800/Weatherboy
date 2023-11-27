@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react"
+import { Routes, Route, HashRouter } from "react-router-dom"
+import Home from "./pages/Home/Home"
+import Layout from "./pages/Layout/Layout"
+import Cyclopedia from "./pages/Cyclopedia"
 
 function App() {
+  const [coords, setCoords] = useState(null)
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
+      setCoords([latitude, longitude]);
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Layout setCoords={setCoords}/>}>
+            <Route index element={<Home coords={coords}/>}/>
+            <Route path="cyclopedia" element={<Cyclopedia/>}/>
+          </Route>
+        </Routes>
+      </HashRouter>
+    </>
+  )
 }
 
-export default App;
+export default App

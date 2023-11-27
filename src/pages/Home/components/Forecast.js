@@ -1,0 +1,59 @@
+import { useState, useEffect } from "react";
+import '../../../weather-icons-master/css/weather-icons.css'
+
+const Forecast = ({ location, forecast, timeZone, weatherIcon }) => {
+  const [days, setDays] = useState([]);
+
+  const today = new Date().getDay();
+
+  const dayNames = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
+  useEffect(() => {
+    const updatedDays = [[], [], [], [], [], [], []];
+    forecast.forEach((hour) => {
+      const diffDays = (new Date(hour.startTime).getDay() - today + 7) % 7;
+      const startTime = new Date(hour.startTime).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timeZone})
+      const endTime = new Date(hour.endTime).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: timeZone})
+      updatedDays[diffDays].push(
+        <div className="flex flex-col m-2 sm:h-40 h-48 sm:w-48 w-64 p-4 bg-blue-900 rounded-xl" key={hour.startTime}>
+          <h1>{startTime}-{endTime}</h1>
+          <div className="flex items-center my-2">
+            <i className={`wi text-xs mr-1 ${weatherIcon(hour.icon)}`}/>
+            <h1>{hour.shortForecast.replace('Chance', 'Chance of')}</h1>
+          </div>
+          <h1>Temperature: {hour.temperature}°F</h1>
+          <h1>Wind: {hour.windDirection} at {hour.windSpeed}</h1>
+          <h1>Relative Humidity: {hour.relativeHumidity.value}%</h1>
+          <h1>Chance of Rain: {hour.probabilityOfPrecipitation.value}%</h1>
+        </div>
+      );
+    });
+    setDays(updatedDays);
+  }, [forecast]);
+
+  return (
+    <div className="w-screen flex flex-col items-center p-8">
+      <h1 className="text-xl my-5 sm:my-10">Forecast for {location}</h1>
+      <div className="w-full flex sm:flex-row justify-between flex-col">
+        {days.map((day, index) => (
+          <div className="flex flex-col items-center" key={index}>
+            <h1 className="my-2">{dayNames[(today + index) % 7]}</h1>
+            <div className="flex flex-col sm:text-xs text-sm">
+              {day.map((hour) => hour)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Forecast;
