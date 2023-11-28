@@ -1,1 +1,2 @@
-This is a React app that displays weather data and forecasts across the United States, and includes a basic hurricane tracker. You can view it at 
+  A React app that displays real time weather conditions and forecasts from NWS stations across the United States.
+  The app includes a hurricane tracker that displays both active and historical hurricane data across the Atlantic and Pacific Ocean. Data is fetched from [NWS API](https://www.weather.gov/documentation/services-web-api) and[AerisWeather API](https://www.aerisweather.com/support/docs/api/). You can view the app [here](https://mikemedina22800.github.io/Weatherboy/).
