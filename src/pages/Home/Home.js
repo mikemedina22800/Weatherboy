@@ -151,9 +151,9 @@ const Home = ({coords}) => {
         <h1 style={{fontFamily:'Poppins'}}>Weatherboy</h1>
         <img src={umbrella} alt="logo" className="h-12 ml-2"/>
       </div>
-      <div className="flex items-center text-xl mb-10">
+      <div className="flex items-center text-xl mb-10 mt-2">
         <h1>Powered by The National Weather Service</h1>
-        <img className="h-10 ml-2" src={nws}/>
+        <img className="h-8 ml-2" src={nws}/>
       </div>
       {location && currentWeather && forecast && timeZone ? (
         <>
