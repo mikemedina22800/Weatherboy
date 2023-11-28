@@ -49,10 +49,10 @@ const Current = ({location, currentWeather, weatherIcon}) => {
   const pressure = currentWeather?.seaLevelPressure?.value
 
   return (
-    <div className="sm:w-[36rem] w-80 sm:p-16 flex flex-col items-center justify-center p-8 h-80 rounded-3xl sm:rounded-[3rem] bg-blue-900">
+    <div className="sm:w-[36rem] w-80 sm:p-12 flex flex-col items-center justify-center p-8 h-80 rounded-3xl sm:rounded-[3rem] bg-blue-900">
       <h1 className="sm:text-xl sm:pb-8 pb-4">Currently at {location}</h1>
       <div className="sm:text-xl flex flex-col sm:flex-row justify-between items-center h-full w-full">
-        <div className="flex flex-col">
+        <div className="flex flex-col h-36 justify-between">
           {temp ? (<h1>Temperature: {Math.round(temp * 9/5 + 32)}°F</h1>) : (<h1>Temperature: Unavailable</h1>)}
           {wind ? (
             currentWeather?.windSpeed.value != 0 ? (

@@ -112,7 +112,7 @@ const Home = ({coords}) => {
       icon = "wi-tornado text-gray-600"
     }
     if (nwsIcon.includes('hur') || nwsIcon.includes('ts_')) {
-      icon = "wi-hurricane text-[red]"
+      icon = "wi-hurricane text-red-600"
     }
     if (nwsIcon.includes('wind')) {
       if (nwsIcon.includes('few')) {
