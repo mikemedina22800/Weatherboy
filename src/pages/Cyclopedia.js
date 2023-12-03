@@ -3,15 +3,11 @@ import { Circle, MapContainer, Polyline, TileLayer, Popup, Marker } from "react-
 import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { fetchTCData, fetchTCArchive } from "../api/aeris";
-import { Select, MenuItem } from "@mui/material";
 
-
-const Cyclopedia = () => {
-  const [active, setActive] = useState(null)
+const Cyclopedia = ({year, active, setActive}) => {
   const [alArchive, setAlArchive] = useState(null)
   const [epArchive, setEpArchive] = useState(null)
   const [cpArchive, setCpArchive] = useState(null)
-  const [year, setYear] = useState(0)
 
   useEffect(() => {
     fetchTCData().then((data) => {
@@ -230,33 +226,19 @@ const Cyclopedia = () => {
     return archiveMap
   } 
 
-  const currentYear = new Date().getFullYear()
-  const years = new Array(currentYear - 1850).fill(0)
-
   return (
-    <>
-      <div className="top-20 h-16 bg-blue-950 fixed w-screen flex justify-center items-center z-50" style={{fontFamily:'Poppins'}}>
-        <Select className="bg-white h-10 w-fit !rounded-lg" defaultValue={0} value={year} onChange={(e) => {setYear(e.target.value)}}>
-          <MenuItem value={0}>Active ({active?.length})</MenuItem>
-          {years.map((_, index) => {
-            const selectedYear = currentYear - index;
-            return (<MenuItem key={selectedYear} value={selectedYear}>{selectedYear}</MenuItem>);
-          })}
-        </Select>
-      </div>
-      <MapContainer className="h-[calc(100vh-4rem)] mt-20 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={10} minZoom={4} zoom={4}>
-        <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'/>
-        {year == 0 ? (
-          <div>{activeMap}</div>
-          ) : (
-          <div>
-            {archiveMap(alArchive)}
-            {archiveMap(epArchive)}
-            {archiveMap(cpArchive)}
-          </div>
-        )}
-      </MapContainer>
-    </>
+    <MapContainer className="h-[calc(100vh-4rem)] mt-20 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={10} minZoom={4} zoom={4}>
+      <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'/>
+      {year == 0 ? (
+        <div>{activeMap}</div>
+        ) : (
+        <div>
+          {archiveMap(alArchive)}
+          {archiveMap(epArchive)}
+          {archiveMap(cpArchive)}
+        </div>
+      )}
+    </MapContainer>
   )
 }
 

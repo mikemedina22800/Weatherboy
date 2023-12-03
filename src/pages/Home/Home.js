@@ -147,7 +147,7 @@ const Home = ({coords}) => {
   }
 
   return (
-    <div className="flex flex-col items-center w-screen font-bold text-white pt-48 px-10"  style={{fontFamily:'Poppins'}}>
+    <div className="flex flex-col items-center w-screen font-bold text-white pt-20 px-10"  style={{fontFamily:'Poppins'}}>
       <div className="flex items-center text-4xl sm:text-5xl">
         <h1>Weatherboy</h1>
         <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>
