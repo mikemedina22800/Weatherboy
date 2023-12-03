@@ -34,6 +34,7 @@ const Home = ({coords}) => {
     if (points && wfo) {
       fetchForecast({wfo, points}).then((data) => {
         setForecast(data.properties.periods)
+        console.log(data)
       })
       fetchStations({wfo, points}).then((data) => {
         setStationUrl(data.observationStations[0])
@@ -139,19 +140,19 @@ const Home = ({coords}) => {
     if (nwsIcon.includes('blizzard')) {
       icon = "wi-snow-wind text-white"
     }
-    if (nwsIcon.includes('fg')) {
+    if (nwsIcon.includes('fog')) {
       icon = "wi-fog text-gray-200"
     }
     return icon
   }
 
   return (
-    <div className="flex flex-col items-center w-screen font-bold text-white pt-48 px-10">
-      <div className="flex items-center text-4xl">
-        <h1 style={{fontFamily:'Poppins'}}>Weatherboy</h1>
-        <img src={umbrella} alt="logo" className="h-12 ml-2"/>
+    <div className="flex flex-col items-center w-screen font-bold text-white pt-48 px-10"  style={{fontFamily:'Poppins'}}>
+      <div className="flex items-center text-4xl sm:text-5xl">
+        <h1>Weatherboy</h1>
+        <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>
       </div>
-      <div className="flex items-center text-xl mb-10 mt-2">
+      <div className="flex items-center text-xl sm:text-3xl mb-10 mt-2">
         <h1>Powered by The National Weather Service</h1>
         <img className="h-10 ml-2" src={nws}/>
       </div>

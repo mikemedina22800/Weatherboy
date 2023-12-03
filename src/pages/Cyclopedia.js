@@ -23,12 +23,15 @@ const Cyclopedia = () => {
     if (year != 0) {
       fetchTCArchive({year, basin:'al'}).then((data) => {
         setAlArchive(data.response)
+        console.log(data.response)
       })
       fetchTCArchive({year, basin:'ep'}).then((data) => {
         setEpArchive(data.response)
+        console.log(data.response)
       })
       fetchTCArchive({year, basin:'cp'}).then((data) => {
         setCpArchive(data.response)
+        console.log(data.response)
       })
     }
   }, [year])
@@ -231,8 +234,8 @@ const Cyclopedia = () => {
   const years = new Array(currentYear - 1850).fill(0)
 
   return (
-    <div className="relative -z-10">
-      <div className="h-20 bg-blue-950 fixed top-20 w-screen flex justify-center">
+    <>
+      <div className="top-20 h-16 bg-blue-950 fixed w-screen flex justify-center items-center z-50" style={{fontFamily:'Poppins'}}>
         <Select className="bg-white h-10 w-fit !rounded-lg" defaultValue={0} value={year} onChange={(e) => {setYear(e.target.value)}}>
           <MenuItem value={0}>Active ({active?.length})</MenuItem>
           {years.map((_, index) => {
@@ -241,7 +244,7 @@ const Cyclopedia = () => {
           })}
         </Select>
       </div>
-      <MapContainer className="h-[calc(100vh-8rem)] mt-40 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={10} minZoom={4} zoom={4}>
+      <MapContainer className="h-[calc(100vh-4rem)] mt-20 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={10} minZoom={4} zoom={4}>
         <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'/>
         {year == 0 ? (
           <div>{activeMap}</div>
@@ -253,7 +256,7 @@ const Cyclopedia = () => {
           </div>
         )}
       </MapContainer>
-    </div>
+    </>
   )
 }
 

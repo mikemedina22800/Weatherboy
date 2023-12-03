@@ -10,7 +10,7 @@ const Searchbar = ({ setCoords }) => {
   const path = useLocation().pathname
   const [location, setLocation] = useState(null)
   return (
-    <div className={`fixed top-20 z-50 h-20 bg-blue-950 w-screen flex items-center justify-center ${path == '/' ? ('flex') : ('hidden')}`}>
+    <div className={`fixed top-20 bg-blue-950 h-16 z-50 w-screen flex justify-center ${path == '/' ? ('flex') : ('hidden')}`}>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={libraries}>
       <Autocomplete 
         types={['(cities)']}
