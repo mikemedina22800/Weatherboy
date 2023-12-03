@@ -43,18 +43,31 @@ const Forecast = ({ location, forecast, timeZone, weatherIcon }) => {
     setDays(updatedDays);
   }, [forecast]);
 
+  const currentDayNames = []
+
   return (
     <div className="w-screen flex flex-col items-center p-8">
       <h1 className="text-xl my-5 sm:my-10">Forecast for {location}</h1>
       <div className="w-full flex sm:flex-row justify-between flex-col">
-        {days.map((day, index) => (
-          <div className="flex flex-col items-center" key={index}>
-            <h1 className="my-2">{dayNames[(today + index) % 7]}</h1>
-            <div className="flex flex-col sm:text-xs text-sm">
-              {day.map((hour) => hour)}
+        {days.map((day, i) => {
+          const dayName = dayNames[(today + i) % 7]
+          currentDayNames.push(dayNames[(today + i) % 7])
+          return (
+            <div className="flex flex-col items-center" key={i}>
+              <h1 className="my-2" id={dayName}>{dayName}</h1>
+              <div className="flex flex-col sm:text-xs text-sm">
+                {day.map((hour) => hour)}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
+      </div>
+      <div className="fixed px-5 w-screen text-xl bg-blue-950 bottom-0 flex justify-between sm:hidden py-2">
+        {currentDayNames.map((day, i) => {
+          return (
+            <h1 className="cursor-pointer hover:text-[aqua]" onClick={() => {document.getElementById(day).scrollIntoView({ behavior: 'auto', block: 'center' })}} key={i}>{day.substring(0,3)}</h1>
+          )
+        })}
       </div>
     </div>
   );
