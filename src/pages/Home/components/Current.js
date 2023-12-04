@@ -59,7 +59,7 @@ const Current = ({location, currentWeather, weatherIcon}) => {
               <h1>Wind: {direction} at {Math.round(currentWeather?.windSpeed.value * 0.621371)} mph</h1>
             ):(<h1>Wind: Nearly Stationary</h1>)
           ):(<h1>Wind: Unavailable</h1>)}
-          {humidity ? (<h1>Relative Humidity: {Math.round(humidity)}%</h1>) : (<h1>Relative Humidity: Unavailable</h1>)}
+          {humidity ? (<h1>Humidity: {Math.round(humidity)}%</h1>) : (<h1>Humidity: Unavailable</h1>)}
           {pressure ? (<h1>Air Pressure: {pressure.toString().substring(0, 4)} mb</h1>) : (<h1>Air Pressure: Unavailable</h1>)}
         </div>
         <div className="flex flex-col items-center">

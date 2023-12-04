@@ -34,7 +34,7 @@ const Forecast = ({ location, forecast, timeZone, weatherIcon }) => {
             </div>
             <h1>Temperature: {hour.temperature}°F</h1>
             <h1>Wind: {hour.windDirection} at {hour.windSpeed}</h1>
-            <h1>Relative Humidity: {hour.relativeHumidity.value}%</h1>
+            <h1>Humidity: {hour.relativeHumidity.value}%</h1>
             <h1>Chance of Rain: {hour.probabilityOfPrecipitation.value}%</h1>
           </div>
         );
