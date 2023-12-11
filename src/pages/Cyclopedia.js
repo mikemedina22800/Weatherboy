@@ -227,7 +227,7 @@ const Cyclopedia = ({year, active, setActive}) => {
   } 
 
   return (
-    <MapContainer className="h-[calc(100vh-4rem)] mt-20 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={10} minZoom={4} zoom={4}>
+    <MapContainer className="h-[calc(100vh-5rem)] mt-20 w-screen -z-10 absolute inset-0 pointer-events-auto" center={[30, -50]} maxZoom={15} minZoom={3} zoom={3}>
       <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'/>
       {year == 0 ? (
         <div>{activeMap}</div>

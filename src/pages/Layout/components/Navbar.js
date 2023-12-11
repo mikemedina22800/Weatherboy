@@ -10,7 +10,7 @@ const Navbar = ({year, setYear, active}) => {
   const [dropDown, setDropDown] = useState(false)
   
   return (
-    <nav className="text-white text-xl z-50 bg-blue-950 font-bold h-20 px-4 w-screen fixed flex items-center sm:justify-around justify-between" style={{fontFamily:'Poppins'}}>
+    <nav className="text-white text-xl z-50 bg-purple-950 font-bold h-20 px-4 w-screen fixed flex items-center sm:justify-around justify-between" style={{fontFamily:'Poppins'}}>
       <div className={`${path == '/' ? ('flex') : ('hidden')}`}>
         <Searchbar/>
       </div>
@@ -31,7 +31,7 @@ const Navbar = ({year, setYear, active}) => {
         </IconButton>
       </div>
       {dropDown && 
-        <div onClick={() => {setDropDown(false)}} className="bg-blue-900 md:hidden z-20 w-64 right-0 fixed top-20">
+        <div onClick={() => {setDropDown(false)}} className="bg-purple-900 md:hidden z-20 w-64 right-0 fixed top-20">
           <Link to="/">
             <h1 className={`py-4 pl-4 hover:text-[aqua] ${path == '/' && 'text-[aqua]'}`}>Current</h1>
           </Link>

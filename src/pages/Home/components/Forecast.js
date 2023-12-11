@@ -62,7 +62,7 @@ const Forecast = ({ location, forecast, timeZone, weatherIcon }) => {
           )
         })}
       </div>
-      <div className="fixed px-5 w-screen text-xl bg-blue-950 bottom-0 flex justify-between sm:hidden py-2">
+      <div className="fixed px-5 w-screen text-xl bg-purple-950 bottom-0 flex justify-between sm:hidden py-2">
         {currentDayNames.map((day, i) => {
           return (
             <h1 className="cursor-pointer hover:text-[aqua]" onClick={() => {document.getElementById(day).scrollIntoView({ behavior: 'auto', block: 'center' })}} key={i}>{day.substring(0,3)}</h1>
