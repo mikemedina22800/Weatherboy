@@ -2,9 +2,10 @@
   "name": "weatherboy",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emo tion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -55,5 +56,6 @@
     "gh-pages": "^6.1.0",
     "tailwindcss": "^3.3.5"
   },
-  "homepage": "https://mikemedina22800.github.io/Weatherboy"
+  "homepage": "https://mikemedina22800.github.io/Weatherboy/"
 }
+

@@ -20,7 +20,7 @@ const Searchbar = ({ setCoords }) => {
         }}
       >
         <Paper className='flex justify-between items-center px-4 py-1'>
-          <InputBase className='!text-xl w-56 overflow-ellipsis sm:w-96' placeholder='Search any US city' />
+          <InputBase className='sm:!text-xl w-48 !text-lg overflow-ellipsis sm:w-96' placeholder='Search any US city' />
           <Search/>
         </Paper>
       </Autocomplete>

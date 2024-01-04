@@ -52,19 +52,19 @@ const Current = ({location, currentWeather, weatherIcon}) => {
     <div className="sm:w-[36rem] w-80 p-8 sm:p-16 flex flex-col items-center justify-center sm:h-80 h-fit rounded-3xl sm:rounded-[3rem] bg-blue-900" style={{fontFamily:'Poppins'}}>
       <h1 className="text-xs sm:text-xl pb-8">Currently at {location}</h1>
       <div className="text-xs sm:text-xl flex flex-row justify-between items-center h-full w-full">
-        <div className="flex flex-col h-20 sm:h-36 justify-between ">
-          {temp ? (<h1>Temperature: {Math.round(temp * 9/5 + 32)}°F</h1>) : (<h1>Temperature: Unavailable</h1>)}
+        <div className="flex flex-col w-fit h-20 sm:h-36 justify-between ">
+          {temp ? (<h1>Temperature: {Math.round(temp * 9/5 + 32)}°F</h1>) : (<h1>Temperature: ?</h1>)}
           {wind ? (
             currentWeather?.windSpeed.value != 0 ? (
               <h1>Wind: {direction} at {Math.round(currentWeather?.windSpeed.value * 0.621371)} mph</h1>
-            ):(<h1>Wind: Nearly Stationary</h1>)
-          ):(<h1>Wind: Unavailable</h1>)}
-          {humidity ? (<h1>Humidity: {Math.round(humidity)}%</h1>) : (<h1>Humidity: Unavailable</h1>)}
-          {pressure ? (<h1>Air Pressure: {pressure.toString().substring(0, 4)} mb</h1>) : (<h1>Air Pressure: Unavailable</h1>)}
+            ):(<h1>Wind: None</h1>)
+          ):(<h1>Wind: ?</h1>)}
+          {humidity ? (<h1>Humidity: {Math.round(humidity)}%</h1>) : (<h1>Humidity: ?</h1>)}
+          {pressure ? (<h1>Air Pressure: {pressure.toString().substring(0, 4)} mb</h1>) : (<h1>Air Pressure: ?</h1>)}
         </div>
         <div className="flex flex-col items-center">
           {nwsIcon ? (<i className={`wi sm:text-8xl text-5xl sm:mb-5 mb-2 ${weatherIcon(nwsIcon)}`}/>) : <QuestionMark className='sm:!text-8xl !text-6xl'/>}
-          <h1>{currentWeather?.textDescription}</h1>
+          <h1 className='text-center'>{currentWeather?.textDescription}</h1>
         </div>
       </div>
     </div>

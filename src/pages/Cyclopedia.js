@@ -19,15 +19,12 @@ const Cyclopedia = ({year, active, setActive}) => {
     if (year != 0) {
       fetchTCArchive({year, basin:'al'}).then((data) => {
         setAlArchive(data.response)
-        console.log(data.response)
       })
       fetchTCArchive({year, basin:'ep'}).then((data) => {
         setEpArchive(data.response)
-        console.log(data.response)
       })
       fetchTCArchive({year, basin:'cp'}).then((data) => {
         setCpArchive(data.response)
-        console.log(data.response)
       })
     }
   }, [year])
@@ -52,15 +49,19 @@ const Cyclopedia = ({year, active, setActive}) => {
     )
   }
 
-  const fill = (type, windSpeed) => {
+  const fill = (type, windSpeed, stormName) => {
     if (type == 'TD') {
-      return 'blue'
-    } else if (type == 'SD') {
-      return 'aqua'
+      if (stormName.includes('Subtropical')) {
+        return 'aqua'
+      } else {
+        return 'blue'
+      }
     } else if (type == 'TS') {
-      return 'lime'
-    } else if (type == 'SS') {
-      return 'lightgreen'
+      if (stormName.includes('Subtropical')) {
+        return 'lightgreen'
+      } else {
+        return 'lime'
+      }
     } else if (type == 'H' || type == 'HU') {
        if (windSpeed < 95) {
         return 'yellow'
@@ -112,20 +113,21 @@ const Cyclopedia = ({year, active, setActive}) => {
       positions.push(coords)
       const type = point.details.stormType
       const windSpeed = point.details.windSpeed
+      const stormName = point.details.stormName
       return (
         point.timestamp != latestTimestamp ? (
-          <Marker opacity={.25} key={index} position={coords} icon={circleIcon(fill(type, windSpeed))}>
+          <Marker opacity={.25} key={index} position={coords} icon={circleIcon(fill(type, windSpeed, stormName))}>
             <Popup className="w-64 font-bold">
-              <h1 className="text-md">{point.details.stormName}</h1>
+              <h1 className="text-md">{stormName}</h1>
               <h1 className="my-1">{month}/{day}/{year} at {formattedTime} EST</h1>
               <h1>Max Wind: {windSpeed} mph</h1>
               <h1>Min Pressure: {point.details.pressureMB} mb</h1>
             </Popup>
           </Marker>
         ) : (
-          <Marker key={index} position={coords} icon={stormIcon(fill(type, windSpeed))}>
+          <Marker key={index} position={coords} icon={stormIcon(fill(type, windSpeed, stormName))}>
             <Popup className="w-64 font-bold">
-              <h1 className="text-md">{point.details.stormName}</h1>
+              <h1 className="text-md">{stormName}</h1>
               <h1 className="my-1">{month}/{day}/{year} at {formattedTime} EST</h1>
               <h1>Max Wind: {point.details.windSpeedMPH} mph</h1>
               <h1>Min Pressure: {point.details.pressureMB} mb</h1>
@@ -183,13 +185,13 @@ const Cyclopedia = ({year, active, setActive}) => {
         const windSpeed = point.details.windSpeedMPH
         let stormName = point.details.stormName
         const shortName = point.details.stormShortName
-        if (point.details.stormName.includes('Potential') == false && /\d/.test(shortName) == false) {
+        if (stormName.includes('Potential') == false && /\d/.test(shortName) == false) {
           positions.push(coords)
         }
         if (stormName.includes('Unnamed')) {
-          if (fill(type, windSpeed) == 'gray') {
+          if (fill(type, windSpeed, stormName) == 'gray') {
             stormName = 'Unnamed Post-Tropical Cyclone'
-          } else if (fill(type, windSpeed) == 'lightgray') {
+          } else if (fill(type, windSpeed, stormName) == 'lightgray') {
             stormName = 'Remnants of Unnamed Tropical Cyclone'
           } else {
             const split = stormName.split(' ')
@@ -197,15 +199,15 @@ const Cyclopedia = ({year, active, setActive}) => {
             stormName = split.join(' ')
           }
         } else {
-          if (fill(type, windSpeed) == 'gray') {
+          if (fill(type, windSpeed, stormName) == 'gray') {
             stormName = `Post-Tropical Cyclone ${shortName}`
-          } if (fill(type, windSpeed) == 'lightgray') {
+          } if (fill(type, windSpeed, stormName) == 'lightgray') {
             stormName = `Remnants of ${shortName}`
           }
         }
-        if (point.details.stormName.includes('Potential') == false && /\d/.test(shortName) == false) {
+        if (stormName.includes('Potential') == false && /\d/.test(shortName) == false) {
           return (
-            <Marker key={index} position={coords} icon={circleIcon(fill(type, windSpeed))}>
+            <Marker key={index} position={coords} icon={circleIcon(fill(type, windSpeed, stormName))}>
               <Popup className="w-64 font-bold">
                 <h1 className="text-md">{stormName}</h1>
                 <h1 className="my-1">{month}/{day}/{year} at {formattedTime} EST</h1>
