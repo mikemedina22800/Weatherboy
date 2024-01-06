@@ -51,6 +51,13 @@ const Navbar = () => {
               </IconButton>
             </Link>
           </Tooltip>
+          <Tooltip title="Weather Map" placement="bottom" arrow>
+            <Link to="/map">
+            <IconButton>
+              <Public className={`!text-5xl ${path === '/map' ? `text-[aqua]` : `text-white`}`}/>
+            </IconButton>
+          </Link>
+          </Tooltip>
           <Tooltip title="Cyclopedia" placement="bottom" arrow>
             <Link to="/cyclopedia">
               <IconButton>
