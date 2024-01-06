@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { IconButton, Tooltip } from "@mui/material"
-import { Menu, Home, Storm, Public } from "@mui/icons-material"
+import { Menu, Home, Cyclone, Public } from "@mui/icons-material"
 import Searchbar from "./Searchbar"
 import SelectYear from "./SelectYear"
 
-const Navbar = ({year, setYear, active}) => {
+const Navbar = () => {
   const path = useLocation().pathname
   const [dropDown, setDropDown] = useState(false)
   
@@ -13,9 +13,6 @@ const Navbar = ({year, setYear, active}) => {
     <nav className="text-white text-xl z-50 bg-purple-950 font-bold h-20 sm:px-10 px-5 w-screen fixed flex items-center justify-between sm:justify-around">
       <div className={`${path === '/' ? ('flex') : ('hidden')}`}>
         <Searchbar/>
-      </div>
-      <div className={`${path === '/cyclopedia' ? ('flex') : ('hidden')}`}>
-        <SelectYear year={year} setYear={setYear} active={active}/>
       </div>
       <div className="hidden md:flex w-96 justify-between">
         <Tooltip title="Home" placement="bottom" arrow>
@@ -35,7 +32,7 @@ const Navbar = ({year, setYear, active}) => {
         <Tooltip title="Cyclopedia" placement="bottom" arrow>
           <Link to="/cyclopedia">
             <IconButton>
-              <Storm className={`!text-5xl ${path === '/cyclopedia' ? `text-[aqua]` : `text-white`}`}/>
+              <Cyclone className={`!text-5xl ${path === '/cyclopedia' ? `text-[aqua]` : `text-white`}`}/>
             </IconButton>
           </Link>
         </Tooltip>
@@ -57,7 +54,7 @@ const Navbar = ({year, setYear, active}) => {
           <Tooltip title="Cyclopedia" placement="bottom" arrow>
             <Link to="/cyclopedia">
               <IconButton>
-                <Storm className={`!text-5xl ${path === '/cyclopedia' ? `text-[aqua]` : `text-white`}`}/>
+                <Cyclone className={`!text-5xl ${path === '/cyclopedia' ? `text-[aqua]` : `text-white`}`}/>
               </IconButton>
             </Link>
           </Tooltip>

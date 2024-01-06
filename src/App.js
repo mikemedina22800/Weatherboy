@@ -13,18 +13,14 @@ function App() {
     })
   }, [])
 
-  const [year, setYear] = useState(0)
-
-  const [active, setActive] = useState(null)
-
   return (
     <>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Layout setCoords={setCoords} year={year} setYear={setYear} active={active}/>}>
+          <Route path="/" element={<Layout setCoords={setCoords}/>}>
             <Route index element={<Home coords={coords}/>}/>
             <Route path="map" element={<WeatherMap/>}/>
-            <Route path="cyclopedia" element={<Cyclopedia year={year} active={active} setActive={setActive}/>}/>
+            <Route path="cyclopedia" element={<Cyclopedia/>}/>
           </Route>
         </Routes>
       </HashRouter>

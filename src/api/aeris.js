@@ -5,7 +5,7 @@ const secret = process.env.REACT_APP_AERIS_CLIENT_SECRET
 
 export const fetchTCData = async () => {
   try {
-    const { data } = await axios.get(`https://api.aerisapi.com/tropicalcyclones?/limit=50&filter=al&filter=ep&filter=cp&client_id=${id}&client_secret=${secret}`)
+    const { data } = await axios.get(`https://api.aerisapi.com/tropicalcyclones?/limit=50&client_id=${id}&client_secret=${secret}`)
     return data
   }
   catch (error) {
