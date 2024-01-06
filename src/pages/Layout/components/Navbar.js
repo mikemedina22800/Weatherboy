@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { IconButton, Tooltip } from "@mui/material"
-import { Menu, Home, Storm } from "@mui/icons-material"
+import { Menu, Home, Storm, Public } from "@mui/icons-material"
 import Searchbar from "./Searchbar"
 import SelectYear from "./SelectYear"
 
@@ -10,16 +10,14 @@ const Navbar = ({year, setYear, active}) => {
   const [dropDown, setDropDown] = useState(false)
   
   return (
-    <nav className="text-white text-xl z-50 bg-purple-950 font-bold h-20 sm:px-10 px-5 w-screen fixed flex items-center justify-between sm:justify-around" style={{fontFamily:'Poppins'}}>
-      <div className={`${path == '/' ? ('flex') : ('hidden')}`}>
+    <nav className="text-white text-xl z-50 bg-purple-950 font-bold h-20 sm:px-10 px-5 w-screen fixed flex items-center justify-between sm:justify-around">
+      <div className={`${path === '/' ? ('flex') : ('hidden')}`}>
         <Searchbar/>
       </div>
-      <h1 className={`${path === '/' && ('!hidden')} text-4xl sm:flex hidden`} style={{fontFamily:'Poppins'}}>Cyclopedia</h1>
-      <div className={`${path != '/' ? ('flex') : ('hidden')}`}>
+      <div className={`${path === '/cyclopedia' ? ('flex') : ('hidden')}`}>
         <SelectYear year={year} setYear={setYear} active={active}/>
       </div>
-      <div className="hidden md:flex w-48 justify-between">
-        <div>
+      <div className="hidden md:flex w-96 justify-between">
         <Tooltip title="Home" placement="bottom" arrow>
           <Link to="/">
             <IconButton>
@@ -27,8 +25,13 @@ const Navbar = ({year, setYear, active}) => {
             </IconButton>
           </Link>
         </Tooltip>
-        </div>
-    <div>
+        <Tooltip title="Weather Map" placement="bottom" arrow>
+          <Link to="/map">
+            <IconButton>
+              <Public className={`!text-5xl ${path === '/map' ? `text-[aqua]` : `text-white`}`}/>
+            </IconButton>
+          </Link>
+        </Tooltip>
         <Tooltip title="Cyclopedia" placement="bottom" arrow>
           <Link to="/cyclopedia">
             <IconButton>
@@ -36,7 +39,6 @@ const Navbar = ({year, setYear, active}) => {
             </IconButton>
           </Link>
         </Tooltip>
-        </div>
       </div>  
       <div className="md:hidden">
         <IconButton onClick={() => {(dropDown === false) ? setDropDown(true) : setDropDown(false)}}>

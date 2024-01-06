@@ -6,6 +6,7 @@ import { CircularProgress } from "@mui/material"
 import Forecast from "./components/Forecast"
 import { fetchPoints, fetchStations, fetchObservations, fetchForecast } from "../../api/nws"
 import { fetchTimeZone } from "../../api/google"
+import wallpaper from "../../images/wallpaper.jpg"
 
 const Home = ({coords}) => {
   const [points, setPoints] = useState(null)
@@ -147,24 +148,27 @@ const Home = ({coords}) => {
   }
 
   return (
-    <div className="flex flex-col items-center w-screen font-bold text-white pt-20 px-10"  style={{fontFamily:'Poppins'}}>
-      <div className="flex items-center text-4xl sm:text-5xl">
-        <h1>Weatherboy</h1>
-        <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>
+    <>
+      <div className="flex flex-col items-center min-h-screen w-screen font-bold text-white pt-20 px-10 bg-black bg-opacity-50">
+        <div className="flex items-center text-4xl sm:text-5xl">
+          <h1>Weatherboy</h1>
+          <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>
+        </div>
+        <div className="flex items-center text-xl sm:text-3xl mb-10 mt-2">
+          <h1>Powered by The National Weather Service</h1>
+          <img className="h-10 ml-2" src={nws}/>
+        </div>
+        {location && currentWeather && forecast && timeZone ? (
+          <>
+            <Current location={location} currentWeather={currentWeather} weatherIcon={weatherIcon}/>
+            <Forecast location={location} forecast={forecast} timeZone={timeZone} weatherIcon={weatherIcon}/>
+          </>
+        ) : (
+          <CircularProgress size={"10rem"}/>
+        )}
       </div>
-      <div className="flex items-center text-xl sm:text-3xl mb-10 mt-2">
-        <h1>Powered by The National Weather Service</h1>
-        <img className="h-10 ml-2" src={nws}/>
-      </div>
-      {location && currentWeather && forecast && timeZone ? (
-        <>
-          <Current location={location} currentWeather={currentWeather} weatherIcon={weatherIcon}/>
-          <Forecast location={location} forecast={forecast} timeZone={timeZone} weatherIcon={weatherIcon}/>
-        </>
-      ) : (
-        <CircularProgress size={"10rem"}/>
-      )}
-    </div>
+      <img className="-z-50 w-[1920px] h-full fixed top-0 !object-cover" src={wallpaper}/>
+    </>
   )
 }
 
