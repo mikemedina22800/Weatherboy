@@ -48,7 +48,7 @@ const Current = ({location, currentWeather, weatherIcon}) => {
 
   return (
     <div className="sm:w-[36rem] w-80 p-8 sm:p-16 flex flex-col items-center justify-center sm:h-80 h-fit rounded-3xl sm:rounded-[3rem] bg-blue-900">
-      <h1 className="text-sm sm:text-xl pb-4">Currently at {location}</h1>
+      <h1 className="text-sm sm:text-xl mb-8">Currently at {location}</h1>
       <div className="text-sm sm:text-xl flex flex-row justify-between items-center h-full w-full">
         <div className="flex flex-col w-fit h-20 sm:h-36 justify-between">
           {temp ? (<h1>Temperature: {Math.round(temp * 9/5 + 32)}°F</h1>) : (<h1>Temperature: ?</h1>)}
