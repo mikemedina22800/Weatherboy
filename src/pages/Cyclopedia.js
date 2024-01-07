@@ -52,8 +52,8 @@ const Cyclopedia = () => {
   }
 
   const fill = (type, windSpeed, stormName) => {
-    if (type === 'LO' || type === 'WV' || type === 'DB') {
-      return 'gray'
+    if (type === 'LO' || type === 'WV' || type === 'DB' || type === 'EX') {
+      return 'lightgray'
     } else {
       if (windSpeed <= 40) {
         if (stormName.includes('Sub')) {
@@ -147,7 +147,7 @@ const Cyclopedia = () => {
 
   return (
     <div className="h-screen w-screen">
-      <div className="fixed top-[90px] right-10 z-50">
+      <div className="fixed top-[6.25rem] right-5 z-10">
         <Select className="bg-white h-10 w-24 !rounded-lg" value={year} onChange={(e) => {setYear(e.target.value)}}>
           {years.map((_, index) => {
             const selectedYear = currentYear - index;

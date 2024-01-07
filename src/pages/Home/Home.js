@@ -149,7 +149,7 @@ const Home = ({coords}) => {
 
   return (
     <>
-      <div className="flex flex-col items-center min-h-screen w-screen font-bold text-white pt-20 px-10 bg-black bg-opacity-50">
+      <div className="flex flex-col min-h-screen items-center overflow-hidden w-screen font-bold text-white pt-20 px-10 bg-black bg-opacity-50">
         <div className="flex items-center text-4xl sm:text-5xl">
           <h1>Weatherboy</h1>
           <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>

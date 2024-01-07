@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import { Checkbox, FormGroup, FormControlLabel, Tooltip, IconButton, Icon } from "@mui/material";
+import { Close, Settings } from "@mui/icons-material";
 import Cyclones from './components/Cyclones'
 import "leaflet/dist/leaflet.css";
 
@@ -14,17 +15,38 @@ const WeatherMap = () => {
   const [temp, setTemp] = useState(false)
   const [cyclones, setCyclones] = useState(false)
 
+  const [layers, setLayers] = useState(false)
+  const [layersButton, setLayersButton] = useState(true)
+
   return (
     <div className="h-screen w-screen">
-      <div className="bg-black bg-opacity-50 w-fit p-5 z-10 fixed top-20 right-0 text-white">
-        <FormGroup>
-          <FormControlLabel control={<Checkbox className="!text-white" checked={clouds} onChange={(e) => {setClouds(e.target.checked)}}/>} label="Clouds" />
-          <FormControlLabel control={<Checkbox className="!text-white" checked={precipitation}  onChange={(e) => {setPrecipitation(e.target.checked)}}/>} label="Precipitation" />
-          <FormControlLabel control={<Checkbox className="!text-white" checked={wind} onChange={(e) => {setWind(e.target.checked)}}/>} label="Wind" />
-          <FormControlLabel control={<Checkbox className="!text-white" checked={pressure} onChange={(e) => {setPressure(e.target.checked)}}/>} label="Sea Level Pressure" />
-          <FormControlLabel control={<Checkbox className="!text-white" checked={temp} onChange={(e) => {setTemp(e.target.checked)}}/>} label="Temperature" />
-          <FormControlLabel control={<Checkbox className="!text-white" checked={cyclones} onChange={(e) => {setCyclones(e.target.checked)}}/>} label="Tropical Cyclones" />
-        </FormGroup>
+      <div className="z-10 fixed top-20 right-0 text-white">
+        {layersButton && 
+          <div className="m-5">
+            <Tooltip title="Layers" placement="bottom" arrow>
+              <IconButton onClick={() => {setLayersButton(false); setLayers(true)}}>
+                <Settings className="!text-5xl"/>
+              </IconButton>
+            </Tooltip>
+          </div>
+        }
+        {layers &&
+          <div className="bg-black bg-opacity-50 p-5">
+            <div className="flex justify-end">
+              <IconButton onClick={() => {setLayers(false); setLayersButton(true)}}>
+                <Close className="text-white"/>
+              </IconButton>
+            </div>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox className="!text-white" checked={clouds} onChange={(e) => {setClouds(e.target.checked)}}/>} label="Clouds" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={precipitation}  onChange={(e) => {setPrecipitation(e.target.checked)}}/>} label="Precipitation" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={wind} onChange={(e) => {setWind(e.target.checked)}}/>} label="Wind" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={pressure} onChange={(e) => {setPressure(e.target.checked)}}/>} label="Sea Level Pressure" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={temp} onChange={(e) => {setTemp(e.target.checked)}}/>} label="Temperature" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={cyclones} onChange={(e) => {setCyclones(e.target.checked)}}/>} label="Tropical Cyclones" />
+            </FormGroup>
+          </div>
+        }
       </div>
       <MapContainer
         className="h-[calc(100%-5rem)] top-20 w-full fixed inset-0 pointer-events-auto"

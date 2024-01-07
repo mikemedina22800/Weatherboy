@@ -10,7 +10,7 @@ const Navbar = () => {
   const [dropDown, setDropDown] = useState(false)
   
   return (
-    <nav className="text-white text-xl z-50 bg-purple-950 font-bold h-20 sm:px-10 px-5 w-screen fixed flex items-center justify-between sm:justify-around">
+    <nav className={`text-white text-xl z-50 bg-purple-950 font-bold h-20 px-5 w-screen fixed flex items-center ${path === '/' ? 'justify-between' : 'justify-end'}`}>
       <div className={`${path === '/' ? ('flex') : ('hidden')}`}>
         <Searchbar/>
       </div>
