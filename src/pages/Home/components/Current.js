@@ -60,7 +60,7 @@ const Current = ({location, currentWeather, weatherIcon}) => {
           {humidity ? (<h1>Humidity: {Math.round(humidity)}%</h1>) : (<h1>Humidity: ?</h1>)}
           {pressure ? (<h1>Air Pressure: {pressure.toString().substring(0, 4)} mb</h1>) : (<h1>Air Pressure: ?</h1>)}
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-20 sm:w-fit">
           {nwsIcon ? (<i className={`wi sm:text-8xl text-5xl sm:mb-5 mb-2 ${weatherIcon(nwsIcon)}`}/>) : <QuestionMark className='sm:!text-8xl !text-6xl'/>}
           <h1 className='text-center'>{currentWeather?.textDescription}</h1>
         </div>
