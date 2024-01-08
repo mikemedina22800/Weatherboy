@@ -3,15 +3,22 @@ import { MapContainer, Polyline, TileLayer, Popup, Marker } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import { divIcon } from "leaflet";
 import { fetchTCArchive } from "../api/aeris";
-import { Select, MenuItem } from "@mui/material";
+import { Close, Settings } from "@mui/icons-material";
+import { Checkbox, FormGroup, FormControlLabel, Tooltip, IconButton, Select, MenuItem } from "@mui/material";
 
 const Cyclopedia = () => {
   const [alArchive, setAlArchive] = useState(null)
   const [epArchive, setEpArchive] = useState(null)
-  const [cpArchive, setCpArchive] = useState(null)
   const [wpArchive, setWpArchive] = useState(null)
   const [ioArchive, setIoArchive] = useState(null)
   const [shArchive, setShArchive] = useState(null)
+  const [al, setAl] = useState(true)
+  const [ep, setEp] = useState(false)
+  const [wp, setWp] = useState(false)
+  const [io, setIo] = useState(false)
+  const [sh, setSh] = useState(false)
+  const [filtersButton, setFiltersButton] = useState(true)
+  const [filters, setFilters] = useState(false)
 
   const currentYear = new Date().getFullYear()
   const [year, setYear] = useState(currentYear)
@@ -21,15 +28,14 @@ const Cyclopedia = () => {
     if (year != 0) {
       fetchTCArchive({year, basin:'al'}).then((data) => {
         setAlArchive(data.response)
-        console.log(data.response)
       })
       fetchTCArchive({year, basin:'ep'}).then((data) => {
         setEpArchive(data.response)
       })
       fetchTCArchive({year, basin:'cp'}).then((data) => {
-        setCpArchive(data.response)
+        epArchive?.push(data.response)
       })
-      fetchTCArchive({year, basin:'wp'}).then((data) => {
+      fetchTCArchive({year, basin:'wind'}).then((data) => {
         setWpArchive(data.response)
       })
       fetchTCArchive({year, basin:'io'}).then((data) => {
@@ -128,8 +134,8 @@ const Cyclopedia = () => {
               <Popup className="w-64 font-bold">
                 <h1 className="text-md">{stormName}</h1>
                 <h1 className="my-1">{month}/{day}/{year} at {formattedTime} EST</h1>
-                <h1>Max Wind: {windSpeed} mph</h1>
-                {point.details.pressureMB && <h1>Min Pressure: {point.details.pressureMB} mb</h1>}
+                <h1>Max wind: {windSpeed} mph</h1>
+                {point.details.ioMB && <h1>Min io: {point.details.ioMB} mb</h1>}
               </Popup>
             </Marker>
           )
@@ -147,22 +153,46 @@ const Cyclopedia = () => {
 
   return (
     <div className="h-screen w-screen">
-      <div className="fixed top-[6.25rem] right-5 z-10">
-        <Select className="bg-white h-10 w-24 !rounded-lg" value={year} onChange={(e) => {setYear(e.target.value)}}>
-          {years.map((_, index) => {
-            const selectedYear = currentYear - index;
-            return (<MenuItem key={selectedYear} value={selectedYear}>{selectedYear}</MenuItem>);
-          })}
-        </Select>
-      </div> 
+      <div className="z-10 fixed top-20 right-0 text-white">
+        {filtersButton && 
+          <div className="m-5">
+            <Tooltip title="Filters" placement="bottom" arrow>
+              <IconButton onClick={() => {setFiltersButton(false); setFilters(true)}}>
+                <Settings className="!text-5xl"/>
+              </IconButton>
+            </Tooltip>
+          </div>
+        }
+        {filters &&
+          <div className="bg-black bg-opacity-50 p-5">
+            <div className="flex justify-end">
+              <IconButton onClick={() => {setFilters(false); setFiltersButton(true)}}>
+                <Close className="text-white"/>
+              </IconButton>
+            </div>
+            <Select className="bg-white h-10 w-24 mb-5 !rounded-lg" value={year} onChange={(e) => {setYear(e.target.value)}}>
+              {years.map((_, index) => {
+                const selectedYear = currentYear - index;
+                return (<MenuItem key={selectedYear} value={selectedYear}>{selectedYear}</MenuItem>);
+              })}
+            </Select>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox className="!text-white" checked={al} onChange={(e) => {setAl(e.target.checked)}}/>} label="Atlantic Ocean" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={ep}  onChange={(e) => {setEp(e.target.checked)}}/>} label="East Pacific Ocean" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={wp} onChange={(e) => {setWp(e.target.checked)}}/>} label="West Pacific Ocean" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={io} onChange={(e) => {setIo(e.target.checked)}}/>} label="Indian Ocean" />
+              <FormControlLabel control={<Checkbox className="!text-white" checked={sh} onChange={(e) => {setSh(e.target.checked)}}/>} label="South Pacific Ocean" />
+            </FormGroup>
+          </div>
+        }
+      </div>
       <MapContainer className="h-[calc(100%-5rem)] top-20 w-full fixed inset-0 pointer-events-auto" maxBounds={[[90, 180], [-90, -180]]} center={[30, -50]} maxZoom={15} minZoom={3} zoom={3}>
         <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'/>  
-        {archiveMap(alArchive)}
-        {archiveMap(epArchive)}
-        {archiveMap(cpArchive)}
-        {archiveMap(wpArchive)}
-        {archiveMap(ioArchive)}
-        {archiveMap(shArchive)}
+        {al && archiveMap(alArchive)}
+        {ep && archiveMap(epArchive)}
+        {wp && archiveMap(wpArchive)}
+        {io && archiveMap(ioArchive)}
+        {sh && archiveMap(shArchive)}
       </MapContainer>
     </div>
   )

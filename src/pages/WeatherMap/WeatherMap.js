@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { Checkbox, FormGroup, FormControlLabel, Tooltip, IconButton, Icon } from "@mui/material";
+import { Checkbox, FormGroup, FormControlLabel, Tooltip, IconButton } from "@mui/material";
 import { Close, Settings } from "@mui/icons-material";
 import Cyclones from './components/Cyclones'
 import "leaflet/dist/leaflet.css";
