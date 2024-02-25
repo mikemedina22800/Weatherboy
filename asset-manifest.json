@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Weatherboy/static/css/main.691dba6e.css",
-    "main.js": "/Weatherboy/static/js/main.f23c406d.js",
+    "main.css": "/Weatherboy/static/css/main.6b464bf2.css",
+    "main.js": "/Weatherboy/static/js/main.c95d66ee.js",
     "static/media/wallpaper.jpg": "/Weatherboy/static/media/wallpaper.a598fff0e5b6b4a67338.jpg",
-    "static/media/weathericons-regular-webfont.svg": "/Weatherboy/static/media/weathericons-regular-webfont.1341a15172cec8dae06e.svg",
+    "static/media/weathericons-regular-webfont.svg": "/Weatherboy/static/media/weathericons-regular-webfont.86a76ca5e882e8285706.svg",
     "static/media/nws.png": "/Weatherboy/static/media/nws.392f7585d36a08c95213.png",
     "static/media/weathericons-regular-webfont.eot": "/Weatherboy/static/media/weathericons-regular-webfont.bb2ec001c20cf752f852.eot",
     "static/media/weathericons-regular-webfont.ttf": "/Weatherboy/static/media/weathericons-regular-webfont.0942d1e1c447d6ce3ffc.ttf",
     "static/media/weathericons-regular-webfont.woff": "/Weatherboy/static/media/weathericons-regular-webfont.371511ddba5fdac0538c.woff",
     "static/media/weathericons-regular-webfont.woff2": "/Weatherboy/static/media/weathericons-regular-webfont.e218aee6928fe3da9ed6.woff2",
     "index.html": "/Weatherboy/index.html",
-    "main.691dba6e.css.map": "/Weatherboy/static/css/main.691dba6e.css.map",
-    "main.f23c406d.js.map": "/Weatherboy/static/js/main.f23c406d.js.map"
+    "main.6b464bf2.css.map": "/Weatherboy/static/css/main.6b464bf2.css.map",
+    "main.c95d66ee.js.map": "/Weatherboy/static/js/main.c95d66ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.691dba6e.css",
-    "static/js/main.f23c406d.js"
+    "static/css/main.6b464bf2.css",
+    "static/js/main.c95d66ee.js"
   ]
 }
