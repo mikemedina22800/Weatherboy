@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom"
 import { IconButton, Tooltip } from "@mui/material"
 import { Menu, Home, Cyclone, Public } from "@mui/icons-material"
 import Searchbar from "./Searchbar"
-import SelectYear from "./SelectYear"
 
 const Navbar = () => {
   const path = useLocation().pathname

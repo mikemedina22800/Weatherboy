@@ -15,7 +15,7 @@ const Home = ({coords}) => {
   const [currentWeather, setCurrentWeather] = useState(null)
   const [forecast, setForecast] = useState(null)
   const [stationUrl, setStationUrl] = useState(null)
-  const [timeZone, setTimeZone] = useState('')
+  const [timeZone, setTimeZone] = useState(null)
 
   useEffect(() => {
     const timestamp = Math.floor(Date.now() / 1000)
@@ -33,9 +33,10 @@ const Home = ({coords}) => {
 
   useEffect(() => {
     if (points && wfo) {
+      console.log(points)
+      console.log(wfo)
       fetchForecast({wfo, points}).then((data) => {
         setForecast(data.properties.periods)
-        console.log(data)
       })
       fetchStations({wfo, points}).then((data) => {
         setStationUrl(data.observationStations[0])
@@ -147,9 +148,11 @@ const Home = ({coords}) => {
     return icon
   }
 
+  console.log(timeZone)
+
   return (
     <>
-      <div className="flex flex-col min-h-screen items-center overflow-hidden w-screen font-bold text-white pt-40 bg-black bg-opacity-50">
+      <div className="flex flex-col min-h-screen items-center overflow-hidden w-screen font-bold text-white pt-40 bg-black bg-opacity-50 px-10">
         <div className="flex items-center text-4xl sm:text-5xl">
           <h1>Weatherboy</h1>
           <img src={umbrella} alt="logo" className="h-10 sm:h-14 ml-2"/>

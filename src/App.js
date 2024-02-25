@@ -17,7 +17,7 @@ function App() {
     <>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Layout setCoords={setCoords}/>}>
+          <Route path="/" element={<Layout/>}>
             <Route index element={<Home coords={coords}/>}/>
             <Route path="map" element={<WeatherMap/>}/>
             <Route path="cyclopedia" element={<Cyclopedia/>}/>
