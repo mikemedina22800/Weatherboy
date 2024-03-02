@@ -48,8 +48,8 @@ const Current = ({location, currentWeather, weatherIcon}) => {
 
   return (
     <div className="sm:w-[36rem] w-80 p-8 sm:p-16 flex flex-col items-center justify-center sm:h-80 h-fit rounded-3xl sm:rounded-[3rem] bg-blue-900">
-      <h1 className="text-sm sm:text-xl mb-8">Currently at {location}</h1>
-      <div className="text-sm sm:text-xl flex flex-row justify-between items-center h-full w-full">
+      <h1 className="text-sm sm:text-xl mb-4">Currently at {location}</h1>
+      <div className="text-xs sm:text-xl flex flex-row justify-between items-center h-full w-full">
         <div className="flex flex-col w-fit h-20 sm:h-36 justify-between">
           {temp ? (<h1>Temperature: {Math.round(temp * 9/5 + 32)}°F</h1>) : (<h1>Temperature: ?</h1>)}
           {wind ? (
@@ -60,7 +60,7 @@ const Current = ({location, currentWeather, weatherIcon}) => {
           {humidity ? (<h1>Humidity: {Math.round(humidity)}%</h1>) : (<h1>Humidity: ?</h1>)}
           {pressure ? (<h1>Air Pressure: {pressure.toString().substring(0, 4)} mb</h1>) : (<h1>Air Pressure: ?</h1>)}
         </div>
-        <div className="flex flex-col items-center w-20 sm:w-fit">
+        <div className="flex flex-col items-center w-20 sm:w-40">
           {nwsIcon ? (<i className={`wi sm:text-8xl text-5xl sm:mb-5 mb-2 ${weatherIcon(nwsIcon)}`}/>) : <QuestionMark className='sm:!text-8xl !text-6xl'/>}
           <h1 className='text-center'>{currentWeather?.textDescription}</h1>
         </div>

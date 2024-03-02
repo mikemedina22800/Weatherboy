@@ -16,7 +16,7 @@ const Home = ({coords}) => {
   const [forecast, setForecast] = useState(null)
   const [stationUrl, setStationUrl] = useState(null)
   const [timeZone, setTimeZone] = useState(null)
-
+ 
   useEffect(() => {
     const timestamp = Math.floor(Date.now() / 1000)
     if (coords) {

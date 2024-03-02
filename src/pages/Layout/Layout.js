@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "./components/Navbar"
 
-const Layout = ({ year, setYear, active}) => {
+const Layout = ({ setCoords }) => {
   return (
     <>
-      <Navbar year={year} setYear={setYear} active={active}/>
+      <Navbar setCoords={setCoords}/>
       <Outlet/>
     </>
   )

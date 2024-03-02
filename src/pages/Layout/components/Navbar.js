@@ -4,14 +4,14 @@ import { IconButton, Tooltip } from "@mui/material"
 import { Menu, Home, Cyclone, Public } from "@mui/icons-material"
 import Searchbar from "./Searchbar"
 
-const Navbar = () => {
+const Navbar = ({setCoords}) => {
   const path = useLocation().pathname
   const [dropDown, setDropDown] = useState(false)
   
   return (
     <nav className={`text-white text-xl z-50 bg-purple-950 font-bold h-20 sm:px-10 px-5 w-screen fixed flex items-center ${path === '/' ? 'justify-between' : 'justify-end'}`}>
       <div className={`${path === '/' ? ('flex') : ('hidden')}`}>
-        <Searchbar/>
+        <Searchbar setCoords={setCoords}/>
       </div>
       <div className="hidden md:flex w-96 justify-between">
         <Tooltip title="Home" placement="bottom" arrow>
