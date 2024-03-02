@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Weatherboy/static/css/main.6b464bf2.css",
-    "main.js": "/Weatherboy/static/js/main.c95d66ee.js",
+    "main.css": "/Weatherboy/static/css/main.922c1eba.css",
+    "main.js": "/Weatherboy/static/js/main.b08cad94.js",
     "static/media/wallpaper.jpg": "/Weatherboy/static/media/wallpaper.a598fff0e5b6b4a67338.jpg",
     "static/media/weathericons-regular-webfont.svg": "/Weatherboy/static/media/weathericons-regular-webfont.86a76ca5e882e8285706.svg",
     "static/media/nws.png": "/Weatherboy/static/media/nws.392f7585d36a08c95213.png",
@@ -10,11 +10,11 @@
     "static/media/weathericons-regular-webfont.woff": "/Weatherboy/static/media/weathericons-regular-webfont.371511ddba5fdac0538c.woff",
     "static/media/weathericons-regular-webfont.woff2": "/Weatherboy/static/media/weathericons-regular-webfont.e218aee6928fe3da9ed6.woff2",
     "index.html": "/Weatherboy/index.html",
-    "main.6b464bf2.css.map": "/Weatherboy/static/css/main.6b464bf2.css.map",
-    "main.c95d66ee.js.map": "/Weatherboy/static/js/main.c95d66ee.js.map"
+    "main.922c1eba.css.map": "/Weatherboy/static/css/main.922c1eba.css.map",
+    "main.b08cad94.js.map": "/Weatherboy/static/js/main.b08cad94.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b464bf2.css",
-    "static/js/main.c95d66ee.js"
+    "static/css/main.922c1eba.css",
+    "static/js/main.b08cad94.js"
   ]
 }
